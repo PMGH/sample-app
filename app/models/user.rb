@@ -1,4 +1,4 @@
 class User < ApplicationRecord
   # ApplicationRecord(abstract) inherits form ActiveRecord::Base
-  validates :name, presence: true
+  validates :name, :email, presence: true
 end
