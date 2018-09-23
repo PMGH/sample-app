@@ -10,7 +10,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      # handle success
+      # rails infers redirection to user_url(@user)
+      redirect_to @user
     else
       render :new
     end
