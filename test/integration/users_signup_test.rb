@@ -15,4 +15,21 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     end
     assert_template 'users/new'
   end
+
+  test "sign up error messages" do
+    get sign_up_path
+    assert_no_difference "User.count" do
+      post users_path, params: {
+        user: {
+          name:                   "",
+          email:                  "",
+          password:               "",
+          password_confirmation:  ""
+        }
+      }
+    end
+    assert_template 'users/new'
+    assert_select 'div#error_explanation'
+    assert_select 'li.error-message'
+  end
 end
