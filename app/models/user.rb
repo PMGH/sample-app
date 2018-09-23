@@ -14,4 +14,5 @@ class User < ApplicationRecord
                     uniqueness: { case_sensitive: false }
   # bcrypt password validation
   has_secure_password
+  validates :password, presence: true, length: { minimum: 6 }
 end
