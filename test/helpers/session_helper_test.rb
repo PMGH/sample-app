@@ -21,4 +21,10 @@ class SessionHelperTest < ActionView::TestCase
     log_in(@user)
     assert_equal @user, current_user
   end
+
+  test "a user can log in" do
+    refute logged_in?
+    log_in(@user)
+    assert logged_in?
+  end
 end
