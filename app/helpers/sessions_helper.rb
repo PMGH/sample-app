@@ -57,6 +57,6 @@ module SessionsHelper
   # Stores the URL trying to be accessed
   def store_location
     # Only set if the request is a GET, prevent storage of form post/patch/delete
-    session[:forwarding_url]= request.original_url if request.get?
+    session[:forwarding_url] = request.original_url if request.get?
   end
 end

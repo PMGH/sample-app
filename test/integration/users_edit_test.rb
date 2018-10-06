@@ -3,6 +3,7 @@ require 'test_helper'
 class UsersEditTest < ActionDispatch::IntegrationTest
   def setup
     @user = users(:one)
+    @other_user = users(:two)
   end
 
   test "unsuccessful edit" do
@@ -62,5 +63,12 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     @user.reload
     assert_equal name, @user.name
     assert_equal email, @user.email
+    assert_nil session[:forwarding_url]
+  end
+
+  test "redirected to default page when trying to edit other user" do
+    log_in_as(@user)
+    get edit_user_path(@other_user)
+    assert_redirected_to root_url
   end
 end
