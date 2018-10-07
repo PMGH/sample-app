@@ -32,4 +32,13 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     get users_path
     assert_redirected_to login_url
   end
+
+  test "cannot update admin attribute" do
+    patch user_path(@other_user), params: {
+      user: {
+        admin: true
+      }
+    }
+    assert_not @other_user.admin?
+  end
 end
