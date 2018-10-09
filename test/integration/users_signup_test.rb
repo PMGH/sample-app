@@ -52,6 +52,9 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
       }
     end
     assert_equal 1, ActionMailer::Base.deliveries.size
+    # Note: assigns(:user) lets us access instance variables in the corresponding action,
+    # the Users controller’s create action defines an @user variable so can access it here.
+    # In other words: `user = @user`
     user = assigns(:user)
     assert_not user.activated?
     # Try to log in before activation
